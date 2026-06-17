@@ -107,11 +107,15 @@ function render(){
 async function enviar(){
   if(!lote.length) return;
   if(WEBHOOK_URL.startsWith('COLE_AQUI')){ toast('Configure o WEBHOOK_URL no script.js','err'); return; }
+  const cont={}; lote.forEach(m=>cont[m.modelo]=(cont[m.modelo]||0)+1);
+  const resumo = Object.entries(cont).map(([m,n])=>`${n} ${m}`).join(' · ');
   const payload = {
     origem:'form-producao',
     data: $('data').value,
     galpao: $('galpao').value,
     responsavel: $('responsavel').value.trim(),
+    total: lote.length,
+    resumo: resumo,
     enviadoEm: new Date().toISOString(),
     motos: lote
   };
