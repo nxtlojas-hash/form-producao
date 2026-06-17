@@ -5,7 +5,7 @@
 // ============================================================
 
 // >>> COLE AQUI O WEBHOOK DO MAKE (depois de criar o cenário) <<<
-const WEBHOOK_URL = 'COLE_AQUI_O_WEBHOOK_DO_MAKE';
+const WEBHOOK_URL = 'https://hook.us2.make.com/hdhz0bubeq9dd2qiieaek4y9qnfe2lfr';
 
 const MODELOS = ['Juna','Kay','Pancho','Akasha','Luna','Hyphen','Vega','Gataka','Jaya','Smart-Juna','Shaka','Zilla','V0','Jay','Kimbo'];
 const CORES = ['Branco','Preto','Prateado','Cinza','Amarelo','Azul Escuro','Azul Turquesa','Azul Tropical','Bege','Branco Pérola','Fendi','Grafite','Laranja','Roxa','Verde','Verde Militar','Vermelho'];
