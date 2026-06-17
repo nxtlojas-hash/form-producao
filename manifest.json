@@ -1,0 +1,12 @@
+{
+  "name": "NXT Produção Diária",
+  "short_name": "NXT Produção",
+  "description": "Lançamento de motos montadas na fábrica NXT",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#C6FF00",
+  "icons": [
+    { "src": "logo nxt.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

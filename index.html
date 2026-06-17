@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- NXT — Form Produção Diária (Fábrica) v1.0 -->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>NXT — Produção Diária</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C6FF00"/>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <img src="logo nxt.png" alt="NXT" class="header-logo">
+            <div class="header-titles">
+                <h1>NXT PRODUÇÃO</h1>
+                <span class="header-subtitle">Lançamento de motos montadas · v1.0</span>
+            </div>
+            <div class="header-badge">FÁBRICA</div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="form-container">
+
+            <!-- LOTE (dados comuns) -->
+            <div class="card">
+                <div class="card-title"><span class="num">1</span><h4>Lote do dia</h4></div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data <span class="req">obrigatório</span></label>
+                        <input type="date" id="data">
+                    </div>
+                    <div class="form-group">
+                        <label>Galpão <span class="req">obrigatório</span></label>
+                        <select id="galpao"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Responsável (quem está lançando) <span class="opt">opcional</span></label>
+                    <input type="text" id="responsavel" placeholder="Seu nome..." autocomplete="off">
+                </div>
+            </div>
+
+            <!-- ADICIONAR MOTO -->
+            <div class="card">
+                <div class="card-title"><span class="num">2</span><h4>Adicionar moto</h4></div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Modelo <span class="req">obrigatório</span></label>
+                        <select id="modelo"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cor <span class="req">obrigatório</span></label>
+                        <select id="cor"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Chassi (17 caracteres) <span class="req">obrigatório</span></label>
+                    <input type="text" id="chassi" inputmode="latin" autocapitalize="characters"
+                           autocomplete="off" spellcheck="false" placeholder="Ex: LXRBD0GW5T0900690" maxlength="20">
+                    <div class="hint" id="hintChassi">Digite o chassi — confere automaticamente.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nº do Motor <span class="req">obrigatório</span></label>
+                    <input type="text" id="motor" autocapitalize="characters" autocomplete="off"
+                           spellcheck="false" placeholder="Ex: JH2500461000S0065">
+                    <div class="hint" id="hintMotor"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <select id="estado">
+                            <option value="Em Estoque">✅ Pronta (Em Estoque)</option>
+                            <option value="Cemitério">⚰ Defeito (Cemitério)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Obs <span class="opt">opcional</span></label>
+                        <input type="text" id="obs" placeholder="Ex: arranhão..." autocomplete="off">
+                    </div>
+                </div>
+                <button type="button" class="btn-add" id="btnAdd">+ Adicionar à lista</button>
+            </div>
+
+            <!-- LISTA DO LOTE -->
+            <div class="card">
+                <div class="card-title"><span class="num">3</span><h4>Motos no lote</h4>
+                    <span class="contador" id="contador">0</span></div>
+                <div id="resumoModelos" class="resumo-modelos"></div>
+                <div id="lista" class="lista"></div>
+                <div id="listaVazia" class="lista-vazia">Nenhuma moto adicionada ainda.</div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- BARRA FIXA -->
+    <div class="bottom-bar">
+        <button type="button" class="btn-enviar" id="btnEnviar" disabled>Enviar lote</button>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
