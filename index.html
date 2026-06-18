@@ -106,6 +106,19 @@
     <!-- TOAST -->
     <div id="toast" class="toast"></div>
 
+    <!-- MODAL DE SUCESSO + WHATSAPP -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-check">✅</div>
+            <h3 id="successCount">Enviado!</h3>
+            <p class="modal-sub">Revise o resumo e envie no grupo <b>Montagem diária</b>:</p>
+            <textarea id="resumoWpp" class="modal-textarea" rows="9" spellcheck="false"></textarea>
+            <button type="button" class="btn-wpp" onclick="enviarGrupoWhatsApp()">📲 Abrir WhatsApp · enviar no grupo</button>
+            <button type="button" class="btn-novo" onclick="novoLote()">Começar novo lote</button>
+            <p class="modal-dica">💡 Dica: fixe o grupo <b>"Montagem diária"</b> no topo do WhatsApp pra achar na hora.</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

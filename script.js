@@ -125,7 +125,7 @@ async function enviar(){
       method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
-    toast(`✓ ${lote.length} moto(s) enviada(s)!`,'ok');
+    abrirResumo(payload);
     lote = []; render();
   }catch(e){
     toast('Erro ao enviar: '+e.message+'. Tente de novo.','err');
@@ -140,7 +140,30 @@ function toast(msg, kind){
   clearTimeout(toastT); toastT=setTimeout(()=>t.className='toast',2600);
 }
 
+// ---- resumo + WhatsApp (grupo "Montagem diária") ----
+function gerarResumoWpp(p){
+  const cont={}; p.motos.forEach(m=>cont[m.modelo]=(cont[m.modelo]||0)+1);
+  const porModelo = Object.entries(cont).map(([m,n])=>`${n} ${m}`).join(' · ');
+  const dataBR = (p.data||'').split('-').reverse().join('/');
+  let t = `🏭 *MONTAGEM DIÁRIA — ${dataBR} · ${p.galpao}*\n`;
+  if(p.responsavel) t += `👤 ${p.responsavel}\n`;
+  t += `✅ ${p.total} moto${p.total>1?'s':''} montada${p.total>1?'s':''}\n📋 ${porModelo}\n\n`;
+  p.motos.forEach(m=>{ t += `• ${m.modelo} ${m.cor} — ${m.chassi}${m.estado==='Cemitério'?' ⚠ DEFEITO':''}\n`; });
+  return t.trim();
+}
+function abrirResumo(p){
+  $('resumoWpp').value = gerarResumoWpp(p);
+  $('successCount').textContent = `✓ ${p.total} moto${p.total>1?'s':''} no estoque!`;
+  $('successModal').classList.add('show');
+}
+function enviarGrupoWhatsApp(){
+  window.open('https://wa.me/?text=' + encodeURIComponent($('resumoWpp').value), '_blank', 'noopener,noreferrer');
+}
+function novoLote(){ $('successModal').classList.remove('show'); $('chassi').focus(); }
+
 window.removeMoto = removeMoto;
+window.enviarGrupoWhatsApp = enviarGrupoWhatsApp;
+window.novoLote = novoLote;
 document.addEventListener('DOMContentLoaded', init);
 
 // PWA
