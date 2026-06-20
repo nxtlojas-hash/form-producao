@@ -7,9 +7,22 @@
 // >>> COLE AQUI O WEBHOOK DO MAKE (depois de criar o cenário) <<<
 const WEBHOOK_URL = 'https://hook.us2.make.com/hdhz0bubeq9dd2qiieaek4y9qnfe2lfr';
 
-const MODELOS = ['Juna','Kay','Pancho','Akasha','Luna','Hyphen','Vega','Gataka','Jaya','Smart-Juna','Shaka','Zilla','V0','Jay','Kimbo'];
-const CORES = ['Branco','Preto','Prateado','Cinza','Amarelo','Azul Escuro','Azul Turquesa','Azul Tropical','Bege','Branco Pérola','Fendi','Grafite','Laranja','Roxa','Verde','Verde Militar','Vermelho'];
+// Modelos e cores vêm do master canônico (dados/produtos.json), atualizado via
+// sync-produtos.js. As listas abaixo são apenas FALLBACK (offline/primeira carga).
+let MODELOS = ['Juna','Kay','Pancho','Kimbo','Luna','Jaya','Jay','Hyphen','Gataka','Vega','V0','Smart-Juna','Shaka','Zilla','Akasha'];
+let CORES = ['Branco','Preto','Prateado','Cinza','Amarelo','Azul Claro','Azul Escuro','Azul Turquesa','Bege','Branco Pérola','Fendi','Grafite Metálico','Laranja','Rosa','Roxa','Verde','Verde Militar','Vermelho'];
 const GALPOES = ['Jaraguá - Fábrica','Sumaré - Galpão 1'];
+
+// Carrega modelos/cores do master canônico; se falhar, usa o fallback acima.
+async function loadProdutos(){
+  try{
+    const res = await fetch('dados/produtos.json', { cache: 'no-cache' });
+    if(!res.ok) return;
+    const data = await res.json();
+    if(Array.isArray(data.modelos) && data.modelos.length) MODELOS = data.modelos;
+    if(Array.isArray(data.cores) && data.cores.length) CORES = data.cores;
+  }catch(e){ /* mantém fallback */ }
+}
 
 let lote = []; // {modelo,cor,chassi,motor,estado,obs}
 
@@ -29,7 +42,8 @@ function chassiInfo(raw){
 // ---- popular selects ----
 function fill(sel, arr){ sel.innerHTML = arr.map(v=>`<option value="${v}">${v}</option>`).join(''); }
 
-function init(){
+async function init(){
+  await loadProdutos();
   fill($('modelo'), MODELOS);
   fill($('cor'), CORES);
   fill($('galpao'), GALPOES);
