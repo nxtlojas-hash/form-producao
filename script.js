@@ -10,7 +10,7 @@ const WEBHOOK_URL = 'https://hook.us2.make.com/hdhz0bubeq9dd2qiieaek4y9qnfe2lfr'
 // Modelos e cores vêm do master canônico (dados/produtos.json), atualizado via
 // sync-produtos.js. As listas abaixo são apenas FALLBACK (offline/primeira carga).
 let MODELOS = ['Juna','Kay','Pancho','Kimbo','Luna','Jaya','Jay','Hyphen','Gataka','Vega','V0','Smart-Juna','Shaka','Zilla','Akasha'];
-let CORES = ['Branco','Preto','Prateado','Cinza','Amarelo','Azul Claro','Azul Escuro','Azul Turquesa','Bege','Branco Pérola','Fendi','Grafite Metálico','Laranja','Rosa','Roxa','Verde','Verde Militar','Vermelho'];
+let CORES = ['Branco','Preto','Prateado','Cinza','Amarelo','Azul Claro','Azul Escuro','Azul Turquesa','Bege','Branco Pérola','Fendi','Grafite','Grafite Metálico','Laranja','Rosa','Roxa','Verde','Verde Militar','Vermelho'];
 const GALPOES = ['Jaraguá - Fábrica','Sumaré - Galpão 1'];
 
 // Carrega modelos/cores do master canônico; se falhar, usa o fallback acima.

@@ -1,5 +1,5 @@
 // NXT Produção — service worker (cache simples do app shell)
-const CACHE = 'nxt-prod-v2';
+const CACHE = 'nxt-prod-v3';
 const ASSETS = ['./','./index.html','./style.css','./script.js','./manifest.json','./logo nxt.png','./dados/produtos.json'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(()=>self.skipWaiting()));
